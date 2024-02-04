@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Credit Card Payment</title>
+</head>
+
+<body>
+    <h2>Credit Card Payment</h2>
+    <form id="creditCardForm">
+        <input type="text" id="creditCardNumber" placeholder="Credit Card Number" required><br>
+        <input type="text" id="cardholderName" placeholder="Cardholder Name" required><br>
+        <div id="cardType"></div>
+    </form>
+
+    <!-- Include the JavaScript code here -->
+    
+    <script>
+        document.getElementById("creditCardNumber").addEventListener("input", function () {
+            const cardNumber = this.value.replace(/\D/g, '');
+            let cardType = "";
+
+            if (/^4/.test(cardNumber)) {
+                cardType = "Visa";
+            } else if (/^5[1-5]/.test(cardNumber)) {
+                cardType = "MasterCard";
+            } else if (/^3[47]/.test(cardNumber)) {
+                cardType = "American Express";
+            } else {
+                cardType = "Unknown";
+            }
+
+            document.getElementById("cardType").textContent = `Card Type: ${cardType}`;
+        });
+    </script>
+</body>
+
+</html>
